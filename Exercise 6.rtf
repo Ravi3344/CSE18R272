@@ -1,0 +1,293 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.18362}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\ul\f0\fs44\lang9 Kalisalingam Academy Of Research And   Education\ulnone  \par
+\ul Java Programming  \par
+\ulnone Name:K.Ravi sankar\par
+Date  :23-10-2020\par
+Regno:9919004137\par
+Code  :CSE18R272 \par
+Exercise No : 6\par
+\ul Programs:          \par
+\ulnone\fs24 1.Write a program that creates a user interface to perform integer divisions. The user\par
+enters two numbers Num1 and Num2. If Num1 or Num2 is not an integer, the\par
+program would throw NumberFormatException. If Num2 is Zero, the program would\par
+throw an ArithmeticException. Display the exception. \par
+\fs36 Code:\par
+\fs28 import java.io.*;\par
+\par
+public class MyClass \{\par
+    public static void main(String args[])throws IOException\{\par
+      String num1,num2;\par
+      int n1,n2,d;\par
+      BufferedReader br=new BufferedReader(new InputStreamReader(System.in));\par
+      try\{\par
+          num1=br.readLine();\par
+          num2=br.readLine();\par
+          n1=Integer.parseInt(num1);\par
+          n2=Integer.parseInt(num2);\par
+          d=n1/n2;\par
+          \par
+          \par
+      \}\par
+      catch(NumberFormatException e)\par
+      \{\par
+          System.out.println("input are not valid");\par
+      \}\par
+      catch(ArithmeticException e)\par
+      \{\par
+           System.out.println("divide by zero error");\par
+          \par
+      \}\par
+      \par
+    \}\par
+\}  \par
+\fs36 Inputs: \par
+\fs28 145\par
+0         \par
+\fs36 Output:\par
+divide by zero error.\par
+\par
+\fs28 2.   \fs24 Java programs to create an bank account with minimum balance, deposit amount,\par
+withdraw amount and throws LessBalanceException, create a\par
+LessBalanceException class which returns a statement says withdraw amount is\par
+not valid, creates 2 accounts and try to withdraw more money than account and\par
+see which type of exception occurs.  \par
+\fs32 Program:\par
+\fs28 import java.io.*;\par
+class BalanceCheck extends Exception\{\par
+    BalanceCheck()\{\par
+        super("Transaction Denied: No min balance found");\par
+    \}\par
+\}\par
+class Bank\{\par
+    int accountno;\par
+    String name;\par
+    double balance;\par
+    static int min_amount=500;\par
+    Bank(int ano,String nm,double bal,int min)\{\par
+        accountno=ano;\par
+        name=nm;\par
+        balance=bal;\par
+    \}\par
+    void Withdraw(double cash) throws BalanceCheck\{\par
+        if((balance-cash)>=min_amount)\{\par
+            balance=balance-cash;\par
+            System.out.println("Transaction Succesful");\par
+            System.out.println("the balance after withdrawl is "+ balance);  \par
+        \}\par
+        else\{\par
+            throw new BalanceCheck();\par
+        \}\par
+        \par
+    \}\par
+    void Deposit(double cash)\{\par
+        balance = balance+cash;\par
+        System.out.println("Transaction Succesful");\par
+        System.out.println("the balance after deposit is "+balance);\par
+    \}\par
+    void CheckBal()\{\par
+        System.out.println("the balance is"+balance);\par
+    \}\par
+\}\par
+\par
+\par
+public class Main\par
+\{\par
+\tab public static void main(String[] args) throws Exception \{\par
+\tab     Bank b1 = new Bank(4137,"ravi",12000,500);\par
+\tab     Bank b2 = new Bank(1234,"raghu",14000,500);\par
+\tab     try\{\par
+\tab        b1.Withdraw(10500);\par
+\tab        b2.Withdraw(12000); \par
+\tab     \}\par
+\tab     catch(BalanceCheck b)\{\par
+            System.out.println(b);\par
+\tab     \}\par
+\tab     b1.CheckBal();\par
+\tab     b2.CheckBal();\par
+\tab     b1.Deposit(100);\par
+\tab     b2.Deposit(150);\par
+\tab     b1.CheckBal();\par
+\tab     b2.CheckBal();\par
+\tab\}\par
+\}        \par
+\fs36 Output: \par
+\fs24 Transaction Succesful\par
+the balance after withdrawl is 1500.0\par
+Transaction Succesful\par
+the balance after withdrawl is 2000.0\par
+the balance is1500.0\par
+the balance is2000.0\par
+Transaction Succesful\par
+the balance after deposit is 1600.0\par
+Transaction Succesful\par
+the balance after deposit is 2150.0\par
+the balance is1600.0\par
+the balance is2150.0\par
+\fs36 3.\fs28 Write a Java program to check whether the age entered is a valid number bycreating user defined exception.\fs24    \fs36      \par
+Program:\par
+\fs28 import java.util.*;\par
+\par
+class AgeCheck extends Exception\par
+\{\par
+    AgeCheck()\par
+    \{\par
+        super("invalid age ");\par
+    \}\par
+\}\par
+\par
+\par
+\par
+public class MyClass \{\par
+    public static void main(String args[])\{\par
+     int age;\par
+     Scanner s=new Scanner (System.in);\par
+     age=s.nextInt();\par
+     \par
+     boolean b=false;\par
+     try\par
+     \{\par
+         b=checkAge(age);\par
+         System.out.println("valid age");\par
+         \par
+     \}\par
+     catch(AgeCheck ag)\par
+     \{\par
+         System.out.println(ag);\par
+     \}\par
+          \par
+      \}\par
+      \par
+      static boolean  checkAge(int age)throws AgeCheck\par
+      \{\par
+          if(age >0 && age <=120)\par
+             return true;\par
+          else \par
+             throw new AgeCheck();\par
+             \par
+      \}\par
+      \par
+    \} \par
+\fs32 Input:  23\par
+Output: valid age  \par
+4. \fs28 Design a Java interface for ADT Stack. Implement this interface using array.Provide necessary exception handling in both the implementations.\fs32  \par
+Program:\par
+ \fs28 class FullStack extends Exception\par
+\{\par
+    FullStack()\par
+    \{\par
+        super("Stack is Full");\par
+    \}\par
+\}\par
+\par
+class EmptyStack extends Exception\par
+\{\par
+   EmptyStack()\par
+    \{\par
+        super("Stack is Empty ");\par
+    \}\par
+\}\par
+\par
+\par
+\par
+\par
+\par
+class Stack\par
+\{\par
+    int top;\par
+    int arr[];\par
+    static int max=10;\par
+    \par
+    Stack()\par
+    \{\par
+        top=-1;\par
+        arr=new int[max];\par
+    \}\par
+    \par
+    void push(int x)throws FullStack\par
+    \{\par
+        if(top==max-1)\par
+        \{\par
+            throw new FullStack();\par
+        \}\par
+        else\par
+        \{\par
+            arr[++top]=x;\par
+        \}\par
+    \}\par
+    \par
+    int pop()throws EmptyStack\par
+    \{\par
+        if(top==-1)\par
+        \{\par
+            throw new EmptyStack();\par
+        \}\par
+        else\par
+        \{\par
+            return(arr[top--]);\par
+        \}\par
+    \}\par
+    void print()\par
+    \{\par
+        for(int i=0;i<arr.length;i++)\par
+          System.out.print(arr[i]+"  ");\par
+         System.out.println();\par
+    \}\par
+\}\par
+\par
+\par
+\par
+\par
+\par
+public class MyClass \{\par
+    public static void main(String args[]) \{\par
+      Stack s1=new Stack();int x;\par
+      \par
+      for(int i=1;i<=12;i++)\par
+      \{\par
+          try\{\par
+              s1.push(i);\par
+               s1.print();\par
+          \}\par
+          catch(FullStack fs)\par
+          \{\par
+              System.out.println(fs);\par
+          \}\par
+         \par
+       \par
+      \}\par
+      \par
+      for (int i=1;i<=12;i++)\par
+      \{\par
+          try\par
+          \{\par
+              x=s1.pop();\par
+               System.out.print(x +" ");\par
+              \par
+          \}\par
+          catch(EmptyStack es)\par
+          \{\par
+              System.out.println(es);\par
+          \}\par
+      \} \par
+ \}\par
+\}\par
+Output:\par
+\fs22 1  0  0  0  0  0  0  0  0  0  \par
+1  2  0  0  0  0  0  0  0  0  \par
+1  2  3  0  0  0  0  0  0  0  \par
+1  2  3  4  0  0  0  0  0  0  \par
+1  2  3  4  5  0  0  0  0  0  \par
+1  2  3  4  5  6  0  0  0  0  \par
+1  2  3  4  5  6  7  0  0  0  \par
+1  2  3  4  5  6  7  8  0  0  \par
+1  2  3  4  5  6  7  8  9  0  \par
+1  2  3  4  5  6  7  8  9  10  \par
+FullStack: Stack is Full\par
+FullStack: Stack is Full\par
+10 9 8 7 6 5 4 3 2 1 EmptyStack: Stack is Empty \par
+EmptyStack: Stack is Empty \par
+\par
+\par
+}
+ 
